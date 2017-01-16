@@ -193,10 +193,20 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Dranknaam" id="quq-6b-o4W">
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="rKs-ef-wTv"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="5UM-JD-pCD">
+                            <connections>
+                                <segue destination="odj-cV-RcT" kind="unwind" unwindAction="cancelAddOrderWithSegue:" id="FNw-i1-TYs"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="rKs-ef-wTv">
+                            <connections>
+                                <segue destination="odj-cV-RcT" kind="unwind" unwindAction="saveOrderWithSegue:" id="jvn-wy-9df"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AHs-tr-JkU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="odj-cV-RcT" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="5156.25" y="35"/>
         </scene>

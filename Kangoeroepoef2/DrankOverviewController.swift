@@ -8,6 +8,16 @@ class DrankOverviewController : UITableViewController {
         splitViewController!.delegate = self
     }
     
+    @IBAction func cancelAddOrder(segue: UIStoryboardSegue) {
+        
+    }
+    
+    @IBAction func saveOrder(segue: UIStoryboardSegue) {
+        
+    }
+    
+    
+    
     
     
     
