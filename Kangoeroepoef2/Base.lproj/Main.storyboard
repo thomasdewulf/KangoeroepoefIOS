@@ -136,7 +136,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Dranken" id="8kH-nC-8CK"/>
                     <connections>
-                        <segue destination="UdQ-dr-thZ" kind="presentation" id="akP-rY-o3z"/>
+                        <segue destination="UdQ-dr-thZ" kind="presentation" identifier="addOrder" id="akP-rY-o3z"/>
                         <segue destination="xga-45-ZNC" kind="showDetail" identifier="showDetail" id="gCV-sk-mAa"/>
                     </connections>
                 </tableViewController>
@@ -147,14 +147,14 @@
         <!--Dranknaam-->
         <scene sceneID="U49-fB-7EL">
             <objects>
-                <tableViewController id="iwW-Oe-9Fq" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="WsV-2r-BLL">
+                <tableViewController id="iwW-Oe-9Fq" customClass="AddOrderController" customModule="Kangoeroepoef2" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="WsV-2r-BLL">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="userCell" id="F2z-1g-ntx">
-                                <rect key="frame" x="0.0" y="28" width="320" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="userCell" id="F2z-1g-ntx" customClass="OrderCell" customModule="Kangoeroepoef2" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="56" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="F2z-1g-ntx" id="wNN-ju-Phg">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -181,6 +181,10 @@
                                         <constraint firstAttribute="trailing" secondItem="fJz-7d-nsm" secondAttribute="trailing" constant="8" id="PJW-gg-d7Y"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="stepper" destination="jlG-WE-2ye" id="Iz6-xs-dyM"/>
+                                    <outlet property="userLabel" destination="UxE-Rn-jAJ" id="NAy-5m-l2b"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -189,7 +193,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Dranknaam" id="quq-6b-o4W">
-                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="done" id="rKs-ef-wTv"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="rKs-ef-wTv"/>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AHs-tr-JkU" userLabel="First Responder" sceneMemberID="firstResponder"/>

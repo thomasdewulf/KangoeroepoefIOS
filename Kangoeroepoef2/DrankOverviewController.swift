@@ -33,6 +33,12 @@ class DrankOverviewController : UITableViewController {
             let detailController = navController.topViewController as! DrankDetailController
            
             detailController.drank = dranken[indexForPushedAccesory!]
+        } else if segue.identifier == "addOrder" {
+            let navController = segue.destination as! UINavigationController
+            let orderController = navController.topViewController as! AddOrderController
+            let index = tableView.indexPathForSelectedRow!.row
+            orderController.drank = dranken[index]
+            orderController.user = user
         }
     }
     
@@ -45,6 +51,7 @@ class DrankOverviewController : UITableViewController {
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //naar overzicht gaan voor dranken kiezen
+        performSegue(withIdentifier: "addOrder", sender: self)
         print("cel zelf")
     }
 }
