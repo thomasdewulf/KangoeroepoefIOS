@@ -6,4 +6,5 @@ target ‘Kangoeroepoef2’ do
     pod 'Alamofire', '~> 4.0'
     pod 'SwiftyJSON'
     pod 'RealmSwift'
+    pod 'ReachabilitySwift'
 end

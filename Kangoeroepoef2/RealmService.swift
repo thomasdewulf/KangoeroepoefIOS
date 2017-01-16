@@ -15,6 +15,18 @@ class RealmService {
         return user
     }
     
+    static func findUser(totem: String) -> ApplicationUser {
+        //let user = realm.objects(ApplicationUser.self).filter({$0.totem == totem}).first
+        guard   let user = realm.objects(ApplicationUser.self).first(where: {$0.totem.lowercased() == totem}) else {
+            
+            return ApplicationUser()
+        }
+      
+            return user
+       
+        
+    }
+    
     static func findDrank(drankId: Int) -> Drank {
         let drank = realm.objects(Drank.self).filter({$0.drankId == drankId}).first!
         return drank
@@ -24,4 +36,5 @@ class RealmService {
         let order = realm.objects(Order.self).filter({$0.orderId == orderId}).first!
         return order
     }
+    
 }
