@@ -25,6 +25,16 @@ class DrankOverviewController : UITableViewController {
         cell.detailTextLabel!.text = " € \(drank.prijs.description)"
         return cell
     }
+    
+    override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+        //detailscherm tonen van drank
+        print("kleine knop")
+        
+    }
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //naar overzicht gaan voor dranken kiezen
+        print("cel zelf")
+    }
 }
 
 //overgenomen uit oplossing "splitview"
