@@ -18,6 +18,7 @@
 		335CBC371E2CCA7E00F06780 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 335CBC351E2CCA7E00F06780 /* Main.storyboard */; };
 		335CBC391E2CCA7E00F06780 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 335CBC381E2CCA7E00F06780 /* Assets.xcassets */; };
 		335CBC3C1E2CCA7E00F06780 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 335CBC3A1E2CCA7E00F06780 /* LaunchScreen.storyboard */; };
+		33AD5E731E2D1C2F00D1CF4A /* DrankDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33AD5E721E2D1C2F00D1CF4A /* DrankDetailController.swift */; };
 		33F9DEFC1E2D05DB00C12E37 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F9DEFB1E2D05DB00C12E37 /* LoginViewController.swift */; };
 		33F9DEFE1E2D131100C12E37 /* DrankOverviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F9DEFD1E2D131100C12E37 /* DrankOverviewController.swift */; };
 		6180199891D126372BF8C01C /* Pods_Kangoeroepoef2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A70EEEF776C7A13BF2F0B892 /* Pods_Kangoeroepoef2.framework */; };
@@ -37,6 +38,7 @@
 		335CBC381E2CCA7E00F06780 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		335CBC3B1E2CCA7E00F06780 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		335CBC3D1E2CCA7E00F06780 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		33AD5E721E2D1C2F00D1CF4A /* DrankDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrankDetailController.swift; sourceTree = "<group>"; };
 		33F9DEFB1E2D05DB00C12E37 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		33F9DEFD1E2D131100C12E37 /* DrankOverviewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrankOverviewController.swift; sourceTree = "<group>"; };
 		A70EEEF776C7A13BF2F0B892 /* Pods_Kangoeroepoef2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kangoeroepoef2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -90,6 +92,7 @@
 			children = (
 				33F9DEFB1E2D05DB00C12E37 /* LoginViewController.swift */,
 				33F9DEFD1E2D131100C12E37 /* DrankOverviewController.swift */,
+				33AD5E721E2D1C2F00D1CF4A /* DrankDetailController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -259,6 +262,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				33AD5E731E2D1C2F00D1CF4A /* DrankDetailController.swift in Sources */,
 				33F9DEFC1E2D05DB00C12E37 /* LoginViewController.swift in Sources */,
 				335CBC341E2CCA7E00F06780 /* ViewController.swift in Sources */,
 				33577E8A1E2CDC0C00D82C5C /* APIService.swift in Sources */,

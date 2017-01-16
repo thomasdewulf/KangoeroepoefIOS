@@ -2,6 +2,7 @@ import UIKit
 
 class DrankOverviewController : UITableViewController {
   var user : ApplicationUser!
+    var indexForPushedAccesory: Int!
   private let dranken = RealmService.realm.objects(Drank.self)
     override func viewDidLoad() {
         splitViewController!.delegate = self
@@ -26,8 +27,19 @@ class DrankOverviewController : UITableViewController {
         return cell
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showDetail" {
+            let navController = segue.destination as! UINavigationController
+            let detailController = navController.topViewController as! DrankDetailController
+           
+            detailController.drank = dranken[indexForPushedAccesory!]
+        }
+    }
+    
     override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
         //detailscherm tonen van drank
+        indexForPushedAccesory = indexPath.row
+        performSegue(withIdentifier: "showDetail", sender: self)
         print("kleine knop")
         
     }
