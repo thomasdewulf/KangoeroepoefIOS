@@ -22,6 +22,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         APIService.getUserData()
         APIService.getDrankData()
+        APIService.getOrderData()
+        APIService.getOrderlineData()
+        //let user = RealmService.realm.objects(ApplicationUser.self).first!
+        //print(user.consumpties)
         return true
     }
 

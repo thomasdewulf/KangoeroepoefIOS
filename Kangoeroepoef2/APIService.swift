@@ -36,6 +36,36 @@ class APIService {
         }
     }
     
+    static func getOrderData() {
+        let ApplicationUserlink = "http://localhost:5000/api/Order"
+        
+        Alamofire.request(ApplicationUserlink).responseJSON {
+            response in
+            switch response.result {
+            case .success(let value):
+                let json = JSON(value)
+                self.parseOrderJSON(json: json)
+            case .failure(let error) :
+                print(error.localizedDescription)
+                
+            }
+        }
+    }
+    static func getOrderlineData() {
+        let ApplicationUserlink = "http://localhost:5000/api/Orderline"
+        
+        Alamofire.request(ApplicationUserlink).responseJSON {
+            response in
+            switch response.result {
+            case .success(let value):
+                let json = JSON(value)
+                self.parseOrderlineJSON(json: json)
+            case .failure(let error) :
+                print(error.localizedDescription)
+                
+            }
+        }
+    }
     //Parse the JSON and update the local db
 private   static func parseUserJSON(json : JSON) {
         for (_,subJson):(String, JSON) in json {
@@ -56,6 +86,37 @@ private   static func parseUserJSON(json : JSON) {
             drank.drankId  = subJson["drankId"].intValue
             drank.prijs = subJson["prijs"].doubleValue
             RealmService.addOrUpdate(object: drank)
+        }
+    }
+    
+    
+    private   static func parseOrderJSON(json : JSON) {
+        for (_,subJson):(String, JSON) in json {
+          let order = Order()
+           order.orderId = subJson["orderId"].intValue
+            order.timestamp = subJson["timestamp"].doubleValue
+            let userId = subJson["orderedBy"]["id"].stringValue
+            
+            let orderedBy = RealmService.findUser(userId: userId)
+            order.orderedBy = orderedBy
+            RealmService.addOrUpdate(object: order)
+        }
+    }
+    
+    private   static func parseOrderlineJSON(json : JSON) {
+        for (_,subJson):(String, JSON) in json {
+            let orderline = Orderline()
+            orderline.orderlineId = subJson["orderLineId"].intValue
+            let drankId = subJson["drank"]["drankId"].intValue
+            let drank = RealmService.findDrank(drankId: drankId)
+            orderline.drank = drank
+            let orderId = subJson["order"]["orderId"].intValue
+            let order = RealmService.findOrder(orderId: orderId)
+            orderline.order = order
+            let userId = subJson["orderedFor"]["id"].stringValue
+            let user = RealmService.findUser(userId: userId)
+            orderline.orderedFor = user
+                       RealmService.addOrUpdate(object: orderline)
         }
     }
 }
