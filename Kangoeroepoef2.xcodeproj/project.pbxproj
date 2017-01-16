@@ -7,14 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		33577E821E2CD70900D82C5C /* ApplicationUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33577E811E2CD70900D82C5C /* ApplicationUser.swift */; };
+		33577E841E2CD8EA00D82C5C /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33577E831E2CD8EA00D82C5C /* Order.swift */; };
+		33577E861E2CD91900D82C5C /* Orderline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33577E851E2CD91900D82C5C /* Orderline.swift */; };
+		33577E881E2CDAE000D82C5C /* Drank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33577E871E2CDAE000D82C5C /* Drank.swift */; };
+		33577E8A1E2CDC0C00D82C5C /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33577E891E2CDC0C00D82C5C /* APIService.swift */; };
+		33577E8C1E2CDC1800D82C5C /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33577E8B1E2CDC1800D82C5C /* RealmService.swift */; };
 		335CBC321E2CCA7E00F06780 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 335CBC311E2CCA7E00F06780 /* AppDelegate.swift */; };
 		335CBC341E2CCA7E00F06780 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 335CBC331E2CCA7E00F06780 /* ViewController.swift */; };
 		335CBC371E2CCA7E00F06780 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 335CBC351E2CCA7E00F06780 /* Main.storyboard */; };
 		335CBC391E2CCA7E00F06780 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 335CBC381E2CCA7E00F06780 /* Assets.xcassets */; };
 		335CBC3C1E2CCA7E00F06780 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 335CBC3A1E2CCA7E00F06780 /* LaunchScreen.storyboard */; };
+		6180199891D126372BF8C01C /* Pods_Kangoeroepoef2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A70EEEF776C7A13BF2F0B892 /* Pods_Kangoeroepoef2.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		33577E811E2CD70900D82C5C /* ApplicationUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationUser.swift; sourceTree = "<group>"; };
+		33577E831E2CD8EA00D82C5C /* Order.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
+		33577E851E2CD91900D82C5C /* Orderline.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Orderline.swift; sourceTree = "<group>"; };
+		33577E871E2CDAE000D82C5C /* Drank.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Drank.swift; sourceTree = "<group>"; };
+		33577E891E2CDC0C00D82C5C /* APIService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		33577E8B1E2CDC1800D82C5C /* RealmService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
 		335CBC2E1E2CCA7D00F06780 /* Kangoeroepoef2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kangoeroepoef2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		335CBC311E2CCA7E00F06780 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		335CBC331E2CCA7E00F06780 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +35,9 @@
 		335CBC381E2CCA7E00F06780 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		335CBC3B1E2CCA7E00F06780 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		335CBC3D1E2CCA7E00F06780 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A70EEEF776C7A13BF2F0B892 /* Pods_Kangoeroepoef2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kangoeroepoef2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B11DB51574ED868C7BD1A22B /* Pods-Kangoeroepoef2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kangoeroepoef2.release.xcconfig"; path = "Pods/Target Support Files/Pods-Kangoeroepoef2/Pods-Kangoeroepoef2.release.xcconfig"; sourceTree = "<group>"; };
+		FD6307886519F926477CC270 /* Pods-Kangoeroepoef2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kangoeroepoef2.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Kangoeroepoef2/Pods-Kangoeroepoef2.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +45,56 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6180199891D126372BF8C01C /* Pods_Kangoeroepoef2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0F2113B5CCD0A269D3380BC6 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				FD6307886519F926477CC270 /* Pods-Kangoeroepoef2.debug.xcconfig */,
+				B11DB51574ED868C7BD1A22B /* Pods-Kangoeroepoef2.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		33577E7E1E2CD6CB00D82C5C /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				33577E891E2CDC0C00D82C5C /* APIService.swift */,
+				33577E8B1E2CDC1800D82C5C /* RealmService.swift */,
+			);
+			name = Services;
+			sourceTree = "<group>";
+		};
+		33577E7F1E2CD6D700D82C5C /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				33577E811E2CD70900D82C5C /* ApplicationUser.swift */,
+				33577E831E2CD8EA00D82C5C /* Order.swift */,
+				33577E851E2CD91900D82C5C /* Orderline.swift */,
+				33577E871E2CDAE000D82C5C /* Drank.swift */,
+			);
+			name = Domain;
+			sourceTree = "<group>";
+		};
+		33577E801E2CD6E800D82C5C /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
 		335CBC251E2CCA7D00F06780 = {
 			isa = PBXGroup;
 			children = (
 				335CBC301E2CCA7D00F06780 /* Kangoeroepoef2 */,
 				335CBC2F1E2CCA7D00F06780 /* Products */,
+				0F2113B5CCD0A269D3380BC6 /* Pods */,
+				878B38A2CA765DCBD850D886 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,6 +109,9 @@
 		335CBC301E2CCA7D00F06780 /* Kangoeroepoef2 */ = {
 			isa = PBXGroup;
 			children = (
+				33577E801E2CD6E800D82C5C /* Controllers */,
+				33577E7F1E2CD6D700D82C5C /* Domain */,
+				33577E7E1E2CD6CB00D82C5C /* Services */,
 				335CBC311E2CCA7E00F06780 /* AppDelegate.swift */,
 				335CBC331E2CCA7E00F06780 /* ViewController.swift */,
 				335CBC351E2CCA7E00F06780 /* Main.storyboard */,
@@ -64,6 +122,14 @@
 			path = Kangoeroepoef2;
 			sourceTree = "<group>";
 		};
+		878B38A2CA765DCBD850D886 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A70EEEF776C7A13BF2F0B892 /* Pods_Kangoeroepoef2.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -71,9 +137,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 335CBC401E2CCA7E00F06780 /* Build configuration list for PBXNativeTarget "Kangoeroepoef2" */;
 			buildPhases = (
+				90ED85711359AE9D775B8B44 /* [CP] Check Pods Manifest.lock */,
 				335CBC2A1E2CCA7D00F06780 /* Sources */,
 				335CBC2B1E2CCA7D00F06780 /* Frameworks */,
 				335CBC2C1E2CCA7D00F06780 /* Resources */,
+				538934731E6E976D7C9B46A5 /* [CP] Embed Pods Frameworks */,
+				F95FA1E22165B72848FA3558 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -131,13 +200,67 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		538934731E6E976D7C9B46A5 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Kangoeroepoef2/Pods-Kangoeroepoef2-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		90ED85711359AE9D775B8B44 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		F95FA1E22165B72848FA3558 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Kangoeroepoef2/Pods-Kangoeroepoef2-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		335CBC2A1E2CCA7D00F06780 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				335CBC341E2CCA7E00F06780 /* ViewController.swift in Sources */,
+				33577E8A1E2CDC0C00D82C5C /* APIService.swift in Sources */,
 				335CBC321E2CCA7E00F06780 /* AppDelegate.swift in Sources */,
+				33577E881E2CDAE000D82C5C /* Drank.swift in Sources */,
+				33577E861E2CD91900D82C5C /* Orderline.swift in Sources */,
+				33577E841E2CD8EA00D82C5C /* Order.swift in Sources */,
+				33577E821E2CD70900D82C5C /* ApplicationUser.swift in Sources */,
+				33577E8C1E2CDC1800D82C5C /* RealmService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,6 +381,7 @@
 		};
 		335CBC411E2CCA7E00F06780 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FD6307886519F926477CC270 /* Pods-Kangoeroepoef2.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Kangoeroepoef2/Info.plist;
@@ -270,6 +394,7 @@
 		};
 		335CBC421E2CCA7E00F06780 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B11DB51574ED868C7BD1A22B /* Pods-Kangoeroepoef2.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Kangoeroepoef2/Info.plist;
@@ -299,6 +424,7 @@
 				335CBC421E2CCA7E00F06780 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

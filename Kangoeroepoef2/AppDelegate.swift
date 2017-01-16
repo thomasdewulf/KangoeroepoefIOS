@@ -5,6 +5,10 @@
 //  Created by thomas de wulf on 16/01/17.
 //  Copyright © 2017 thomas de wulf. All rights reserved.
 //
+// Sources:
+// Realm: https://realm.io/docs/swift/latest/#getting-started
+// Timestamp: http://stackoverflow.com/questions/2997062/how-to-convert-nsdate-into-unix-timestamp-iphone-sdk
+
 
 import UIKit
 
@@ -16,6 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        APIService.getUserData()
         return true
     }
 
