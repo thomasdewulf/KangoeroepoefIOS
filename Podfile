@@ -7,4 +7,5 @@ target ‘Kangoeroepoef2’ do
     pod 'SwiftyJSON'
     pod 'RealmSwift'
     pod 'ReachabilitySwift'
+    pod 'EVReflection'
 end

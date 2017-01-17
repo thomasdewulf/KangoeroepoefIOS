@@ -11,21 +11,23 @@
 
 
 import UIKit
+import ReachabilitySwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
-
+    var updateService = UpdateService()
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        APIService.getUserData()
+        /*APIService.getUserData()
         APIService.getDrankData()
         APIService.getOrderData()
-        APIService.getOrderlineData()
+        APIService.getOrderlineData()*/
         //let user = RealmService.realm.objects(ApplicationUser.self).first!
         //print(user.consumpties)
+        updateService.testReachability()
+        
         return true
     }
 

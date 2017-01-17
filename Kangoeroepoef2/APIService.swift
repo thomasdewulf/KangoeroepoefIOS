@@ -3,6 +3,7 @@
 //      - Links opslaan in properties file
 import Alamofire
 import SwiftyJSON
+import EVReflection
 class APIService {
 
     static func getUserData() {
@@ -66,6 +67,79 @@ class APIService {
             }
         }
     }
+    
+    
+    static func pushOrders()
+    {
+        let orderModels = RealmService.realm.objects(AddOrderModel.self)
+        let linkSingle = "http://localhost:5000/api/order"
+        let linkMultiple = "http://localhost:5000/api/order/createMultiple"
+        var link = ""
+        var parameters = [[String: Any]]()
+        if orderModels.count == 1 {
+            let order = orderModels.first!
+            order.orderlinesArray = Array(order.orderlines)
+            link = linkSingle
+            parameters.append( parseOrderModel(model: orderModels.first!))
+        }
+        else {
+            link = linkMultiple
+            for order in orderModels {
+                 order.orderlinesArray = Array(order.orderlines)
+                parameters.append(parseOrderModel(model: order))
+                
+            }
+        }
+        
+        print(parameters)
+        var test = URLRequest(url: URL(string: link)!)
+        test.httpMethod = "POST"
+      
+    let data = try! JSONSerialization.data(withJSONObject: parameters, options: JSONSerialization.WritingOptions.prettyPrinted)
+            test.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            test.httpBody = data
+        
+      
+        
+        Alamofire.request(test).responseJSON {
+            response in
+            switch response.result {
+            case .success(let value):
+                print(value)
+                
+            case .failure(let error) :
+                print("ERROR")
+                print(error.localizedDescription)
+                
+            }
+        }
+      
+        
+        
+        
+       /* Alamofire.request(.POST, link, parameters: [:], encoding: .Custom({
+            (convertible, params) in
+            var mutableRequest = convertible.URLRequest.copy() as NSMutableURLRequest
+            mutableRequest.HTTPBody = "myBodyString".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
+            return (mutableRequest, nil)
+        }))*/
+    }
+    
+    private static func parseOrderModel(model : AddOrderModel) -> [String: Any] {
+        var json = [String: Any]()
+        json["orderedById"] = model.orderedById
+        json["timestamp"] = model.timestamp
+        var orderlines = [[String: Any]]()
+        for line in model.orderlinesArray {
+            var lineJson = [String: Any]()
+            lineJson["drankId"] = line.drankId
+            lineJson["orderedForId"] = line.orderedForId
+            orderlines.append(lineJson)
+        }
+        json["orderlines"] = orderlines
+        
+        return json
+    }
     //Parse the JSON and update the local db
 private   static func parseUserJSON(json : JSON) {
         for (_,subJson):(String, JSON) in json {
@@ -120,3 +194,5 @@ private   static func parseUserJSON(json : JSON) {
         }
     }
 }
+
+

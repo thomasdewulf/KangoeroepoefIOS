@@ -1,4 +1,5 @@
 import RealmSwift
+import EVReflection
 
 class OrderlineModel : Object {
     
@@ -11,4 +12,7 @@ class OrderlineModel : Object {
     override static func primaryKey() -> String? {
         return "orderlineModelId"
     }
+}
+extension OrderlineModel: EVReflectable {
+    
 }

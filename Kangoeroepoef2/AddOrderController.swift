@@ -18,8 +18,11 @@ class AddOrderController : UITableViewController {
         
         let point = sender.convert(CGPoint.zero, to: tableView)
         let indexPath = self.tableView.indexPathForRow(at: point)!
+        
         aantallen[users[indexPath.row]] = Int(sender.value)
-      
+       let cell = tableView.cellForRow(at: indexPath) as! OrderCell
+        let user = users[indexPath.row]
+        cell.userLabel?.text = "\(user.totem) (\(sender.value.description))"
     
         
     }
