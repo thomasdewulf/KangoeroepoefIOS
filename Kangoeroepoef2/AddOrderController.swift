@@ -4,40 +4,46 @@ class AddOrderController : UITableViewController {
     var drank : Drank!
     var user: ApplicationUser!
     var users : Results<ApplicationUser>!
+    var aantallen = [ApplicationUser : Int]()
     override func viewDidLoad() {
        
-        users = RealmService.realm.objects(ApplicationUser.self).filter("userId != %@", user.userId)
+        users = RealmService.realm.objects(ApplicationUser.self)
+        for user in users {
+            aantallen[user] = 0
+        }
         title = drank.naam
+    }
+    //source: http://stackoverflow.com/questions/28548939/swift-tableview-of-steppers-click-one-stepper-in-a-cell-and-other-steppers-ge
+    @IBAction func stepperChanged(sender: UIStepper) {
+        
+        let point = sender.convert(CGPoint.zero, to: tableView)
+        let indexPath = self.tableView.indexPathForRow(at: point)!
+        aantallen[users[indexPath.row]] = Int(sender.value)
+      
+    
+        
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
-       
-        return 1
-        }
-        else if section == 1 {
-       
+      
         return users.count
-        }
-        return 0
+        
+       
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "userCell",for: indexPath) as! OrderCell
-        if indexPath.section == 0
-        {
-         cell.userLabel?.text = user.totem
-        }
-        else if indexPath.section == 1 {
+     
+  
             let user = users[indexPath.row]
             cell.userLabel?.text = user.totem
-        }
+        
         
         return cell
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return 1
     }
     
 }

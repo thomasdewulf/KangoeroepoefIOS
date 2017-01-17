@@ -9,11 +9,29 @@ class DrankOverviewController : UITableViewController {
     }
     
     @IBAction func cancelAddOrder(segue: UIStoryboardSegue) {
-        
+        //Teruggaan naar drankoverzicht zonder gekozen aantallen op te slaan.
     }
     
     @IBAction func saveOrder(segue: UIStoryboardSegue) {
-        
+        let controller = segue.source as! AddOrderController
+        let orderModel = AddOrderModel()
+        let aantallen = controller.aantallen
+        var orderlines : [OrderlineModel] = []
+        orderModel.orderedById = user.userId
+        for user in aantallen.keys
+        {
+            if aantallen[user]! > 0 {
+                for _ in 1...aantallen[user]! {
+                    let orderline = OrderlineModel()
+                    orderline.drankId = controller.drank.drankId
+                    orderline.order = orderModel
+                    orderline.orderedForId = user.userId
+                    orderlines.append(orderline)
+                }
+            }
+        }
+        //Schrijven naar realmservice
+        RealmService.addOutgoingOrder(order: orderModel, lines: orderlines)
     }
     
     

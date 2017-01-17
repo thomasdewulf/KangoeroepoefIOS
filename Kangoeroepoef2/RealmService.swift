@@ -37,4 +37,11 @@ class RealmService {
         return order
     }
     
+    static func addOutgoingOrder(order: AddOrderModel, lines : [OrderlineModel]) {
+        try! realm.write {
+            realm.add(lines)
+            realm.add(order)
+        }
+    }
+    
 }
