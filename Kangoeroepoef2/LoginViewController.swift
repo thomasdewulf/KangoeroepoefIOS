@@ -7,6 +7,7 @@ class LoginViewController : UIViewController {
     @IBOutlet weak var errorLabel : UILabel!
     private var loggedinUser: ApplicationUser!
     override func viewDidLoad() {
+      
     errorLabel.text = ""
     }
     @IBAction func login() {
@@ -23,8 +24,16 @@ class LoginViewController : UIViewController {
         }
         
         errorLabel.text = ""
+       
+       
         loggedinUser = user
+        
         performSegue(withIdentifier: "loggedIn", sender: self)
+    }
+    
+    @IBAction func logout(segue: UIStoryboardSegue) {
+    loggedinUser = nil
+        totemTextField.text = ""
     }
     
     

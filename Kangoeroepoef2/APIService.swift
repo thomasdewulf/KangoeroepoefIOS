@@ -1,9 +1,11 @@
-//TODO: - data ophalen van server
-//      - data van outbox naar server pushen
+//TODO: 
+//
 //      - Links opslaan in properties file
+//      - parse methodes proberen herwerken naar 1 methode -> EVReflect?
 import Alamofire
 import SwiftyJSON
 import EVReflection
+import RealmSwift
 class APIService {
 
     static func getUserData() {
@@ -71,7 +73,8 @@ class APIService {
     
     static func pushOrders()
     {
-        let orderModels = RealmService.realm.objects(AddOrderModel.self)
+        let realm = try! Realm(fileURL: URL(fileURLWithPath: "Users/thomasdewulf/Desktop/testRealm.realm"))
+        let orderModels = realm.objects(AddOrderModel.self)
         let linkSingle = "http://localhost:5000/api/order"
         let linkMultiple = "http://localhost:5000/api/order/createMultiple"
         var link = ""
@@ -80,7 +83,8 @@ class APIService {
             let order = orderModels.first!
             order.orderlinesArray = Array(order.orderlines)
             link = linkSingle
-            parameters.append( parseOrderModel(model: orderModels.first!))
+            parameters.append( parseOrderModel(model: order))
+            print(parameters)
         }
         else {
             link = linkMultiple
@@ -91,38 +95,42 @@ class APIService {
             }
         }
         
-        print(parameters)
-        var test = URLRequest(url: URL(string: link)!)
-        test.httpMethod = "POST"
-      
-    let data = try! JSONSerialization.data(withJSONObject: parameters, options: JSONSerialization.WritingOptions.prettyPrinted)
+        if orderModels.count >= 1 {
+            var test = URLRequest(url: URL(string: linkMultiple)!)
+            test.httpMethod = "POST"
+            
+            let data = try! JSONSerialization.data(withJSONObject: parameters, options: JSONSerialization.WritingOptions.prettyPrinted)
             test.setValue("application/json", forHTTPHeaderField: "Content-Type")
             test.httpBody = data
-        
-      
-        
-        Alamofire.request(test).responseJSON {
-            response in
-            switch response.result {
-            case .success(let value):
-                print(value)
+            
+            
+            
+            Alamofire.request(test).response {
+                response in
+                switch response.response?.statusCode {
+                case 200? :
+                    print("hoera!")
+                    
+                    let realm = try! Realm(fileURL: URL(fileURLWithPath: "Users/thomasdewulf/Desktop/testRealm.realm"))
+                    try! realm.write {
+                        //realm.delete(realm.objects(AddOrderModel.self))
+                        realm.delete(realm.objects(OrderlineModel.self))
+                        realm.delete(realm.objects(AddOrderModel.self))
+                    }
+                    
+                case 500?:
+                    print("spijtig")
+                default:
+                    print("nog meer spijt")
+                }
                 
-            case .failure(let error) :
-                print("ERROR")
-                print(error.localizedDescription)
                 
             }
         }
-      
         
-        
-        
-       /* Alamofire.request(.POST, link, parameters: [:], encoding: .Custom({
-            (convertible, params) in
-            var mutableRequest = convertible.URLRequest.copy() as NSMutableURLRequest
-            mutableRequest.HTTPBody = "myBodyString".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
-            return (mutableRequest, nil)
-        }))*/
+        print("no orders to post")
+    
+     
     }
     
     private static func parseOrderModel(model : AddOrderModel) -> [String: Any] {

@@ -11,8 +11,12 @@ class RealmService {
     
     static func findUser(userId : String) -> ApplicationUser
     {
-        let user = realm.objects(ApplicationUser.self).filter({$0.userId == userId}).first!
-        return user
+        
+            let user = realm.objects(ApplicationUser.self).filter({$0.userId == userId}).first!
+            return user
+        
+        
+        
     }
     
     static func findUser(totem: String) -> ApplicationUser {
@@ -26,6 +30,8 @@ class RealmService {
        
         
     }
+    
+    
     
     static func findDrank(drankId: Int) -> Drank {
         let drank = realm.objects(Drank.self).filter({$0.drankId == drankId}).first!

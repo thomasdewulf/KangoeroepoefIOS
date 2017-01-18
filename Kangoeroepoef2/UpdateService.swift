@@ -14,13 +14,7 @@ class UpdateService {
                 APIService.pushOrders()
             }
             
-            DispatchQueue.main.async {
-                
-                if reachability.isReachable {
-                    
-                    
-                }
-            }
+         
         }
         reachability.whenUnreachable = { reachability in
        
@@ -36,4 +30,7 @@ class UpdateService {
             print("Unable to start notifier")
         }
     }
+    
+    
+ 
 }
