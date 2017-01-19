@@ -61,7 +61,7 @@ class APIService {
     }
     static func getOrderlineData() {
        
-        let orderlines = RealmService.realm.objects(Orderline.self)
+     /*   let orderlines = RealmService.realm.objects(Orderline.self)
         var maxId = orderlines.max(ofProperty: "orderlineId") as Int?
         if maxId == nil {
            maxId = 0
@@ -79,7 +79,7 @@ class APIService {
                 print(error.localizedDescription)
                 
             }
-        }
+        }*/
     }
     
     
@@ -193,21 +193,25 @@ private   static func parseUserJSON(json : JSON) {
             
             let orderedBy = RealmService.findUser(userId: userId)
             order.orderedBy = orderedBy
+            let orderlines = subJson["orderlines"]
+            
             RealmService.addOrUpdate(object: order)
+            
+            parseOrderlineJSON(json: orderlines, order: order)
         }
     }
     
-    private   static func parseOrderlineJSON(json : JSON) {
+    private   static func parseOrderlineJSON(json : JSON, order: Order) {
         for (_,subJson):(String, JSON) in json {
             let orderline = Orderline()
             orderline.orderlineId = subJson["orderLineId"].intValue
             let drankId = subJson["drank"]["drankId"].intValue
             let drank = RealmService.findDrank(drankId: drankId)
             orderline.drank = drank
-            let orderId = subJson["order"]["orderId"].intValue
-            let order = RealmService.findOrder(orderId: orderId)
+           
+            
             orderline.order = order
-            let userId = subJson["orderedFor"]["id"].stringValue
+            let userId = subJson["orderedForId"].stringValue
             let user = RealmService.findUser(userId: userId)
             orderline.orderedFor = user
                        RealmService.addOrUpdate(object: orderline)

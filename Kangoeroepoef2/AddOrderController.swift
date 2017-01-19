@@ -40,10 +40,10 @@ class AddOrderController : UITableViewController {
         }
         if sum == 0 {
             doneButton.isEnabled = false
-            cancelButton.isEnabled = false
+           // cancelButton.isEnabled = false
         } else {
             doneButton.isEnabled = true
-            cancelButton.isEnabled = true
+         //   cancelButton.isEnabled = true
         }
     }
     

@@ -30,7 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         updateService.startReachabilityNotifier()
         APIService.getUserData()
         APIService.getDrankData()
-        APIService.getOrderlineData()
+        APIService.getOrderData()
         return true
     }
     
@@ -40,9 +40,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //deze calls naar background verplaatsen. Is niet essentieel voor werking app
         let reachability = Reachability()!
         if reachability.isReachable {
+            APIService.getDrankData()
+            APIService.getUserData()
             APIService.getOrderData()
-            APIService.getOrderlineData()
-              APIService.pushOrders()
+            APIService.pushOrders()
         }
       
 
