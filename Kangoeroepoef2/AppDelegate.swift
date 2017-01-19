@@ -8,6 +8,7 @@
 // Sources:
 // Realm: https://realm.io/docs/swift/latest/#getting-started
 // Timestamp: http://stackoverflow.com/questions/2997062/how-to-convert-nsdate-into-unix-timestamp-iphone-sdk
+//user defaults: http://stackoverflow.com/questions/19206762/equivalent-to-shared-preferences-in-ios
 
 
 import UIKit
@@ -19,16 +20,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var updateService = UpdateService()
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        
+       
         // Override point for customization after application launch.
-        /*APIService.getUserData()
-        APIService.getDrankData()
-        APIService.getOrderData()
-        APIService.getOrderlineData()*/
+        
         //let user = RealmService.realm.objects(ApplicationUser.self).first!
         //print(user.consumpties)
-        updateService.testReachability()
-        
+        UIApplication.shared.setMinimumBackgroundFetchInterval(UIApplicationBackgroundFetchIntervalMinimum)
+        updateService.startReachabilityNotifier()
+        APIService.getUserData()
+        APIService.getDrankData()
+        APIService.getOrderlineData()
         return true
+    }
+    
+    func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        
+       // APIService.getDrankData()
+        //deze calls naar background verplaatsen. Is niet essentieel voor werking app
+        let reachability = Reachability()!
+        if reachability.isReachable {
+            APIService.getOrderData()
+            APIService.getOrderlineData()
+              APIService.pushOrders()
+        }
+      
+
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

@@ -1,15 +1,18 @@
 import UIKit
-
+import ReachabilitySwift
 class DrankOverviewController : UITableViewController {
   var user : ApplicationUser!
     var indexForPushedAccesory: Int!
   private let dranken = RealmService.realm.objects(Drank.self)
+    private let reachability = Reachability()!
     override func viewDidLoad() {
         splitViewController!.delegate = self
     }
     
     @IBAction func cancelAddOrder(segue: UIStoryboardSegue) {
         //Teruggaan naar drankoverzicht zonder gekozen aantallen op te slaan.
+    let controller = segue.source as! AddOrderController
+        controller.resetTable()
     }
     
     @IBAction func saveOrder(segue: UIStoryboardSegue) {
@@ -32,6 +35,12 @@ class DrankOverviewController : UITableViewController {
         }
         //Schrijven naar realmservice
         RealmService.addOutgoingOrder(order: orderModel, lines: orderlines)
+        if reachability.isReachable {
+          APIService.pushOrders()
+            
+        }
+        controller.resetTable()
+       
     }
     
     
@@ -61,6 +70,7 @@ class DrankOverviewController : UITableViewController {
             let detailController = navController.topViewController as! DrankDetailController
            
             detailController.drank = dranken[indexForPushedAccesory!]
+            detailController.user = user
         } else if segue.identifier == "addOrder" {
             let navController = segue.destination as! UINavigationController
             let orderController = navController.topViewController as! AddOrderController

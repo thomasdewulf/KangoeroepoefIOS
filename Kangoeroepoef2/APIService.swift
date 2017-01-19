@@ -40,7 +40,12 @@ class APIService {
     }
     
     static func getOrderData() {
-        let ApplicationUserlink = "http://localhost:5000/api/Order"
+        let orderlines = RealmService.realm.objects(Order.self)
+        var maxId = orderlines.max(ofProperty: "orderId") as Int?
+        if maxId == nil {
+            maxId = 0
+        }
+        let ApplicationUserlink = "http://localhost:5000/api/Order/NewOrders?id=\(maxId!.description)"
         
         Alamofire.request(ApplicationUserlink).responseJSON {
             response in
@@ -55,9 +60,16 @@ class APIService {
         }
     }
     static func getOrderlineData() {
-        let ApplicationUserlink = "http://localhost:5000/api/Orderline"
+       
+        let orderlines = RealmService.realm.objects(Orderline.self)
+        var maxId = orderlines.max(ofProperty: "orderlineId") as Int?
+        if maxId == nil {
+           maxId = 0
+        }
+        let applicationUserlink = "http://localhost:5000/api/Order/NewLines?id=\(maxId!.description)"
         
-        Alamofire.request(ApplicationUserlink).responseJSON {
+        Alamofire.request(applicationUserlink).responseJSON {
+            
             response in
             switch response.result {
             case .success(let value):

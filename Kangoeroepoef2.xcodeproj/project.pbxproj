@@ -195,6 +195,11 @@
 					335CBC2D1E2CCA7D00F06780 = {
 						CreatedOnToolsVersion = 8.2;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};

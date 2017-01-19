@@ -1,12 +1,13 @@
 import RealmSwift
 import Realm
 import EVReflection
+import Foundation
 //Gebruikt om orders naar de backend te pushen
 class AddOrderModel : Object {
     //UUID source: http://stackoverflow.com/questions/26252432/how-do-i-set-a-auto-increment-key-in-realm
     dynamic var orderModelId = UUID().uuidString
     dynamic var orderedById = ""
-    dynamic var timestamp = NSTimeIntervalSince1970
+    dynamic var timestamp = Date().timeIntervalSince1970
     let orderlines = LinkingObjects(fromType: OrderlineModel.self, property: "order")
     var orderlinesArray : [OrderlineModel] = []
 

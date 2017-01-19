@@ -9,6 +9,16 @@ class LoginViewController : UIViewController {
     override func viewDidLoad() {
       
     errorLabel.text = ""
+        let queue = OperationQueue()
+        let activityView = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+        activityView.center = self.view.center
+        activityView.startAnimating()
+        activityView.isHidden = false
+        self.view.addSubview(activityView)
+        
+            //Draaier tonen voorbereiden first use
+                    
+  
     }
     @IBAction func login() {
         guard let totem = totemTextField.text, !totem.isEmpty else {

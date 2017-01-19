@@ -5,8 +5,13 @@ class AddOrderController : UITableViewController {
     var user: ApplicationUser!
     var users : Results<ApplicationUser>!
     var aantallen = [ApplicationUser : Int]()
+    
+    @IBOutlet weak var doneButton : UIBarButtonItem!
+    @IBOutlet weak var cancelButton: UIBarButtonItem!
+   
+    
     override func viewDidLoad() {
-       
+       disableButtons()
         users = RealmService.realm.objects(ApplicationUser.self)
         for user in users {
             aantallen[user] = 0
@@ -22,9 +27,39 @@ class AddOrderController : UITableViewController {
         aantallen[users[indexPath.row]] = Int(sender.value)
        let cell = tableView.cellForRow(at: indexPath) as! OrderCell
         let user = users[indexPath.row]
-        cell.userLabel?.text = "\(user.totem) (\(sender.value.description))"
-    
+        cell.userLabel?.text = "\(user.totem) (\(Int(sender.value).description))"
+    disableButtons()
         
+    }
+    
+    func disableButtons() {
+       // http://stackoverflow.com/questions/39553054/sum-of-values-in-a-dictionary-swift
+        var sum = 0
+        for aantal in aantallen.values {
+            sum = sum + aantal
+        }
+        if sum == 0 {
+            doneButton.isEnabled = false
+            cancelButton.isEnabled = false
+        } else {
+            doneButton.isEnabled = true
+            cancelButton.isEnabled = true
+        }
+    }
+    
+    func resetTable() {
+        tableView.reloadData()//reload the correct names
+        users = RealmService.realm.objects(ApplicationUser.self)
+        for user in users {
+            aantallen[user] = 0
+        }
+        disableButtons()
+       for cell in tableView.visibleCells
+       {
+        let orderCell = cell as! OrderCell
+       
+        orderCell.stepper.value = 0
+        }
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -57,4 +92,6 @@ class OrderCell: UITableViewCell {
  
     @IBOutlet weak var userLabel: UILabel!
     @IBOutlet weak var stepper: UIStepper!
+    
+    
 }

@@ -6,7 +6,7 @@ class UpdateService {
 
     
     
-    func testReachability() {
+    func startReachabilityNotifier() {
         reachability.whenReachable = { reachability in
             
             if reachability.isReachable {
