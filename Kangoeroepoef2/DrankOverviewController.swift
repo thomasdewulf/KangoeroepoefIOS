@@ -10,6 +10,9 @@ class DrankOverviewController : UITableViewController {
     private let reachability = Reachability()!
     var token : NotificationToken? = nil
     
+    //API
+    let api = APIService()
+    
     //UI
     let searchController = UISearchController(searchResultsController: nil)
     var indexForPushedAccesory: Int!
@@ -62,14 +65,14 @@ class DrankOverviewController : UITableViewController {
         realm.addOutgoingOrder(order: orderModel, lines: orderlines)
         if reachability.isReachable {
             
-          APIService.pushOrders()
+          api.pushOrders()
         }
         controller.resetTable()
        
     }
     
     func refreshData() {
-        APIService.getDrankData()
+        api.getDrankData()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

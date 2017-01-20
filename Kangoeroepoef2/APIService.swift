@@ -1,6 +1,4 @@
 //TODO: 
-//
-//      - Links opslaan in properties file
 //      - parse methodes proberen herwerken naar 1 methode -> EVReflect?
 import Alamofire
 import SwiftyJSON
@@ -9,12 +7,18 @@ import RealmSwift
 class APIService {
     
     //realm
-    static let realm = RealmService()
-
-    static func getUserData() {
-        let ApplicationUserlink = "http://localhost:5000/api/ApplicationUser"
+     let realm = RealmService()
+     let links : NSDictionary
+    
+    init() {
+        let path = Bundle.main.path(forResource: "APILinks", ofType: "plist")!
+        links = NSDictionary(contentsOfFile: path)!
+    }
+    
+    func getUserData() {
+        let link = links["users"] as! String
         
-        Alamofire.request(ApplicationUserlink).responseJSON {
+        Alamofire.request(link).responseJSON {
             response in
             switch response.result {
             case .success(let value):
@@ -26,10 +30,10 @@ class APIService {
             }
         }
     }
-    static func getDrankData() {
-        let ApplicationUserlink = "http://localhost:5000/api/Dranken"
+    func getDrankData() {
+        let link = links["dranken"] as! String
         
-        Alamofire.request(ApplicationUserlink).responseJSON {
+        Alamofire.request(link).responseJSON {
             response in
             switch response.result {
             case .success(let value):
@@ -42,15 +46,18 @@ class APIService {
         }
     }
     
-    static func getOrderData() {
+     func getOrderData() {
         let orderlines = realm.realm.objects(Order.self)
         var maxId = orderlines.max(ofProperty: "orderId") as Int?
         if maxId == nil {
             maxId = 0
         }
-        let ApplicationUserlink = "http://localhost:5000/api/Order/NewOrders?id=\(maxId!.description)"
+        var link = links["orders"] as! String
+        link.append(maxId!.description)
         
-        Alamofire.request(ApplicationUserlink).responseJSON {
+       
+        
+        Alamofire.request(link).responseJSON {
             response in
             switch response.result {
             case .success(let value):
@@ -65,28 +72,20 @@ class APIService {
   
     
     
-    static func pushOrders()
+     func pushOrders()
     {
        
         let orderModels = realm.realm.objects(AddOrderModel.self)
-       // let linkSingle = "http://localhost:5000/api/order"
-        let linkMultiple = "http://localhost:5000/api/order/createMultiple"
-       // var link = ""
+
+        let linkMultiple = links["create"] as! String
+      
         var parameters = [[String: Any]]()
-       /* if orderModels.count == 1 {
-            let order = orderModels.first!
-            order.orderlinesArray = Array(order.orderlines)
-            link = linkSingle
-            parameters.append( parseOrderModel(model: order))
-            print(parameters)
-        }
-        else {*/
-          //  link = linkMultiple
+  
             for order in orderModels {
                  order.orderlinesArray = Array(order.orderlines)
                 parameters.append(parseOrderModel(model: order))
                 
-           // }
+          
         }
         
         if orderModels.count >= 1 {
@@ -99,6 +98,7 @@ class APIService {
             
             
             
+            
             Alamofire.request(test).response {
                 response in
                 switch response.response?.statusCode {
@@ -106,28 +106,28 @@ class APIService {
                     print("hoera!")
                     
                    
-                    try! realm.realm.write {
-                        //realm.delete(realm.objects(AddOrderModel.self))
-                        realm.realm.delete(realm.realm.objects(OrderlineModel.self))
-                        realm.realm.delete(realm.realm.objects(AddOrderModel.self))
+                    try! self.realm.realm.write {
+                      
+                        self.realm.realm.delete(self.realm.realm.objects(OrderlineModel.self))
+                        self.realm.realm.delete(self.realm.realm.objects(AddOrderModel.self))
                     }
                     
                 case 500?:
-                    print("spijtig")
+                    print("Server error. Status 500")
                 default:
-                    print("nog meer spijt")
+                    print("Iets anders ging fout. Statuscode: \(response.response?.statusCode)")
                 }
                 
                 
             }
         }
         
-        print("no orders to post")
+        print("Geen orders in outbox.")
     
      
     }
-    
-    private static func parseOrderModel(model : AddOrderModel) -> [String: Any] {
+   
+    private  func parseOrderModel(model : AddOrderModel) -> [String: Any] {
         var json = [String: Any]()
         json["orderedById"] = model.orderedById
         json["timestamp"] = model.timestamp
@@ -142,8 +142,10 @@ class APIService {
         
         return json
     }
+    
+     //Deze functies herwerken!!
     //Parse the JSON and update the local db
-private   static func parseUserJSON(json : JSON) {
+private    func parseUserJSON(json : JSON) {
         for (_,subJson):(String, JSON) in json {
         let user = ApplicationUser()
             user.email = subJson["email"].stringValue
@@ -154,7 +156,7 @@ private   static func parseUserJSON(json : JSON) {
     }
     
     
-    private   static func parseDrankJSON(json : JSON) {
+    private    func parseDrankJSON(json : JSON) {
         for (_,subJson):(String, JSON) in json {
             let drank = Drank()
             drank.naam = subJson["naam"].stringValue
@@ -166,7 +168,7 @@ private   static func parseUserJSON(json : JSON) {
     }
     
     
-    private   static func parseOrderJSON(json : JSON) {
+    private    func parseOrderJSON(json : JSON) {
         for (_,subJson):(String, JSON) in json {
           let order = Order()
            order.orderId = subJson["orderId"].intValue
@@ -183,7 +185,7 @@ private   static func parseUserJSON(json : JSON) {
         }
     }
     
-    private   static func parseOrderlineJSON(json : JSON, order: Order) {
+    private func parseOrderlineJSON(json : JSON, order: Order) {
         for (_,subJson):(String, JSON) in json {
             let orderline = Orderline()
             orderline.orderlineId = subJson["orderLineId"].intValue
