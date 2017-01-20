@@ -1,6 +1,7 @@
 import RealmSwift
 
 class Drank : Object {
+    
     dynamic var naam = ""
     dynamic var drankId = 0
     dynamic var prijs : Double = 0.0

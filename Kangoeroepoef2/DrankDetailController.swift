@@ -1,8 +1,13 @@
 import UIKit
 
 class DrankDetailController : UITableViewController {
+    //vars
     var drank: Drank!
     var user : ApplicationUser!
+    
+    //realm
+    let realm = RealmService()
+    //Outlets
     @IBOutlet weak var naamCell: UITableViewCell!
     @IBOutlet weak var alcoholCell: UITableViewCell!
     @IBOutlet weak var prijsCell: UITableViewCell!
@@ -11,7 +16,8 @@ class DrankDetailController : UITableViewController {
     
     
     override func viewDidLoad() {
-        let aantalGedronken = RealmService.realm.objects(Orderline.self).filter({$0.drank == self.drank && $0.orderedFor == self.user}).count
+        
+        let aantalGedronken = realm.realm.objects(Orderline.self).filter({$0.drank == self.drank && $0.orderedFor == self.user}).count
         title = drank.naam
         naamCell.detailTextLabel!.text = drank.naam
         alcoholCell.detailTextLabel!.text = drank.alcoholisch ? "Ja" : "Nee"

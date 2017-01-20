@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>create</key>
+	<string>http://localhost:5000/api/order/createMultiple</string>
+	<key>orders</key>
+	<string>http://localhost:5000/api/Order/NewOrders?id=</string>
+	<key>users</key>
+	<string>http://localhost:5000/api/ApplicationUser</string>
+	<key>dranken</key>
+	<string>http://localhost:5000/api/Dranken</string>
+</dict>
+</plist>

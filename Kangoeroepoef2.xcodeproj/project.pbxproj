@@ -14,7 +14,6 @@
 		33577E8A1E2CDC0C00D82C5C /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33577E891E2CDC0C00D82C5C /* APIService.swift */; };
 		33577E8C1E2CDC1800D82C5C /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33577E8B1E2CDC1800D82C5C /* RealmService.swift */; };
 		335CBC321E2CCA7E00F06780 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 335CBC311E2CCA7E00F06780 /* AppDelegate.swift */; };
-		335CBC341E2CCA7E00F06780 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 335CBC331E2CCA7E00F06780 /* ViewController.swift */; };
 		335CBC371E2CCA7E00F06780 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 335CBC351E2CCA7E00F06780 /* Main.storyboard */; };
 		335CBC391E2CCA7E00F06780 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 335CBC381E2CCA7E00F06780 /* Assets.xcassets */; };
 		335CBC3C1E2CCA7E00F06780 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 335CBC3A1E2CCA7E00F06780 /* LaunchScreen.storyboard */; };
@@ -23,6 +22,7 @@
 		33AD5E771E2E074A00D1CF4A /* AddOrderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33AD5E761E2E074A00D1CF4A /* AddOrderModel.swift */; };
 		33AD5E7A1E2E082300D1CF4A /* OrderlineModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33AD5E791E2E082300D1CF4A /* OrderlineModel.swift */; };
 		33AD5E7C1E2E184F00D1CF4A /* UpdateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33AD5E7B1E2E184F00D1CF4A /* UpdateService.swift */; };
+		33BB1A981E32059D00A32D99 /* APILinks.plist in Resources */ = {isa = PBXBuildFile; fileRef = 33BB1A971E32059D00A32D99 /* APILinks.plist */; };
 		33F9DEFC1E2D05DB00C12E37 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F9DEFB1E2D05DB00C12E37 /* LoginViewController.swift */; };
 		33F9DEFE1E2D131100C12E37 /* DrankOverviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F9DEFD1E2D131100C12E37 /* DrankOverviewController.swift */; };
 		6180199891D126372BF8C01C /* Pods_Kangoeroepoef2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A70EEEF776C7A13BF2F0B892 /* Pods_Kangoeroepoef2.framework */; };
@@ -37,7 +37,6 @@
 		33577E8B1E2CDC1800D82C5C /* RealmService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
 		335CBC2E1E2CCA7D00F06780 /* Kangoeroepoef2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kangoeroepoef2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		335CBC311E2CCA7E00F06780 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		335CBC331E2CCA7E00F06780 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		335CBC361E2CCA7E00F06780 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		335CBC381E2CCA7E00F06780 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		335CBC3B1E2CCA7E00F06780 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -47,6 +46,7 @@
 		33AD5E761E2E074A00D1CF4A /* AddOrderModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddOrderModel.swift; sourceTree = "<group>"; };
 		33AD5E791E2E082300D1CF4A /* OrderlineModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderlineModel.swift; sourceTree = "<group>"; };
 		33AD5E7B1E2E184F00D1CF4A /* UpdateService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateService.swift; sourceTree = "<group>"; };
+		33BB1A971E32059D00A32D99 /* APILinks.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = APILinks.plist; sourceTree = "<group>"; };
 		33F9DEFB1E2D05DB00C12E37 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		33F9DEFD1E2D131100C12E37 /* DrankOverviewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrankOverviewController.swift; sourceTree = "<group>"; };
 		A70EEEF776C7A13BF2F0B892 /* Pods_Kangoeroepoef2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kangoeroepoef2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -133,11 +133,11 @@
 				33577E7F1E2CD6D700D82C5C /* Domain */,
 				33577E7E1E2CD6CB00D82C5C /* Services */,
 				335CBC311E2CCA7E00F06780 /* AppDelegate.swift */,
-				335CBC331E2CCA7E00F06780 /* ViewController.swift */,
 				335CBC351E2CCA7E00F06780 /* Main.storyboard */,
 				335CBC381E2CCA7E00F06780 /* Assets.xcassets */,
 				335CBC3A1E2CCA7E00F06780 /* LaunchScreen.storyboard */,
 				335CBC3D1E2CCA7E00F06780 /* Info.plist */,
+				33BB1A971E32059D00A32D99 /* APILinks.plist */,
 			);
 			path = Kangoeroepoef2;
 			sourceTree = "<group>";
@@ -229,6 +229,7 @@
 				335CBC3C1E2CCA7E00F06780 /* LaunchScreen.storyboard in Resources */,
 				335CBC391E2CCA7E00F06780 /* Assets.xcassets in Resources */,
 				335CBC371E2CCA7E00F06780 /* Main.storyboard in Resources */,
+				33BB1A981E32059D00A32D99 /* APILinks.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -290,7 +291,6 @@
 				33AD5E751E2D231100D1CF4A /* AddOrderController.swift in Sources */,
 				33AD5E731E2D1C2F00D1CF4A /* DrankDetailController.swift in Sources */,
 				33F9DEFC1E2D05DB00C12E37 /* LoginViewController.swift in Sources */,
-				335CBC341E2CCA7E00F06780 /* ViewController.swift in Sources */,
 				33577E8A1E2CDC0C00D82C5C /* APIService.swift in Sources */,
 				33F9DEFE1E2D131100C12E37 /* DrankOverviewController.swift in Sources */,
 				335CBC321E2CCA7E00F06780 /* AppDelegate.swift in Sources */,

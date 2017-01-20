@@ -1,26 +1,50 @@
 import UIKit
 import ReachabilitySwift
+import RealmSwift
 class DrankOverviewController : UITableViewController {
-  var user : ApplicationUser!
-    var indexForPushedAccesory: Int!
-  private let dranken = RealmService.realm.objects(Drank.self)
+    var user : ApplicationUser!
+    
+    //Realm
+    let realm = RealmService()
+    private var dranken : Results<Drank>! //realm.realm.objects(Drank.self)
     private let reachability = Reachability()!
+    var token : NotificationToken? = nil
+    
+    //UI
+    let searchController = UISearchController(searchResultsController: nil)
+    var indexForPushedAccesory: Int!
+    
     override func viewDidLoad() {
+        dranken = realm.realm.objects(Drank.self)
+        //Tableview updaten wanneer een wijziging in de lokale db gebeurt
+        token = realm.realm.addNotificationBlock {
+            notification, realm in
+            self.tableView.reloadData()
+        }
+        
         splitViewController!.delegate = self
+        
+        //Resfresh
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+        tableView.refreshControl = refreshControl
     }
     
     @IBAction func cancelAddOrder(segue: UIStoryboardSegue) {
+        
         //Teruggaan naar drankoverzicht zonder gekozen aantallen op te slaan.
-    let controller = segue.source as! AddOrderController
+        let controller = segue.source as! AddOrderController
         controller.resetTable()
     }
     
     @IBAction func saveOrder(segue: UIStoryboardSegue) {
+        
         let controller = segue.source as! AddOrderController
         let orderModel = AddOrderModel()
         let aantallen = controller.aantallen
         var orderlines : [OrderlineModel] = []
         orderModel.orderedById = user.userId
+        
         for user in aantallen.keys
         {
             if aantallen[user]! > 0 {
@@ -32,22 +56,40 @@ class DrankOverviewController : UITableViewController {
                     orderlines.append(orderline)
                 }
             }
-        }
+        }//End for
+        
         //Schrijven naar realmservice
-        RealmService.addOutgoingOrder(order: orderModel, lines: orderlines)
+        realm.addOutgoingOrder(order: orderModel, lines: orderlines)
         if reachability.isReachable {
-          APIService.pushOrders()
             
+          APIService.pushOrders()
         }
         controller.resetTable()
        
     }
     
+    func refreshData() {
+        APIService.getDrankData()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showDetail" {
+            let navController = segue.destination as! UINavigationController
+            let detailController = navController.topViewController as! DrankDetailController
+            
+            detailController.drank = dranken[indexForPushedAccesory!]
+            detailController.user = user
+        } else if segue.identifier == "addOrder" {
+            let navController = segue.destination as! UINavigationController
+            let orderController = navController.topViewController as! AddOrderController
+            let index = tableView.indexPathForSelectedRow!.row
+            orderController.drank = dranken[index]
+            orderController.user = user
+        }
+    }
     
     
-    
-    
-    
+    //Tableview opzetten
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -64,21 +106,7 @@ class DrankOverviewController : UITableViewController {
         return cell
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showDetail" {
-            let navController = segue.destination as! UINavigationController
-            let detailController = navController.topViewController as! DrankDetailController
-           
-            detailController.drank = dranken[indexForPushedAccesory!]
-            detailController.user = user
-        } else if segue.identifier == "addOrder" {
-            let navController = segue.destination as! UINavigationController
-            let orderController = navController.topViewController as! AddOrderController
-            let index = tableView.indexPathForSelectedRow!.row
-            orderController.drank = dranken[index]
-            orderController.user = user
-        }
-    }
+ 
     
     override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
         //detailscherm tonen van drank

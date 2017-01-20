@@ -7,6 +7,9 @@ import SwiftyJSON
 import EVReflection
 import RealmSwift
 class APIService {
+    
+    //realm
+    static let realm = RealmService()
 
     static func getUserData() {
         let ApplicationUserlink = "http://localhost:5000/api/ApplicationUser"
@@ -40,7 +43,7 @@ class APIService {
     }
     
     static func getOrderData() {
-        let orderlines = RealmService.realm.objects(Order.self)
+        let orderlines = realm.realm.objects(Order.self)
         var maxId = orderlines.max(ofProperty: "orderId") as Int?
         if maxId == nil {
             maxId = 0
@@ -59,52 +62,31 @@ class APIService {
             }
         }
     }
-    static func getOrderlineData() {
-       
-     /*   let orderlines = RealmService.realm.objects(Orderline.self)
-        var maxId = orderlines.max(ofProperty: "orderlineId") as Int?
-        if maxId == nil {
-           maxId = 0
-        }
-        let applicationUserlink = "http://localhost:5000/api/Order/NewLines?id=\(maxId!.description)"
-        
-        Alamofire.request(applicationUserlink).responseJSON {
-            
-            response in
-            switch response.result {
-            case .success(let value):
-                let json = JSON(value)
-                self.parseOrderlineJSON(json: json)
-            case .failure(let error) :
-                print(error.localizedDescription)
-                
-            }
-        }*/
-    }
+  
     
     
     static func pushOrders()
     {
-        let realm = try! Realm(fileURL: URL(fileURLWithPath: "Users/thomasdewulf/Desktop/testRealm.realm"))
-        let orderModels = realm.objects(AddOrderModel.self)
-        let linkSingle = "http://localhost:5000/api/order"
+       
+        let orderModels = realm.realm.objects(AddOrderModel.self)
+       // let linkSingle = "http://localhost:5000/api/order"
         let linkMultiple = "http://localhost:5000/api/order/createMultiple"
-        var link = ""
+       // var link = ""
         var parameters = [[String: Any]]()
-        if orderModels.count == 1 {
+       /* if orderModels.count == 1 {
             let order = orderModels.first!
             order.orderlinesArray = Array(order.orderlines)
             link = linkSingle
             parameters.append( parseOrderModel(model: order))
             print(parameters)
         }
-        else {
-            link = linkMultiple
+        else {*/
+          //  link = linkMultiple
             for order in orderModels {
                  order.orderlinesArray = Array(order.orderlines)
                 parameters.append(parseOrderModel(model: order))
                 
-            }
+           // }
         }
         
         if orderModels.count >= 1 {
@@ -123,11 +105,11 @@ class APIService {
                 case 200? :
                     print("hoera!")
                     
-                    let realm = try! Realm(fileURL: URL(fileURLWithPath: "Users/thomasdewulf/Desktop/testRealm.realm"))
-                    try! realm.write {
+                   
+                    try! realm.realm.write {
                         //realm.delete(realm.objects(AddOrderModel.self))
-                        realm.delete(realm.objects(OrderlineModel.self))
-                        realm.delete(realm.objects(AddOrderModel.self))
+                        realm.realm.delete(realm.realm.objects(OrderlineModel.self))
+                        realm.realm.delete(realm.realm.objects(AddOrderModel.self))
                     }
                     
                 case 500?:
@@ -167,7 +149,7 @@ private   static func parseUserJSON(json : JSON) {
             user.email = subJson["email"].stringValue
             user.userId = subJson["userId"].stringValue
             user.totem = subJson["totem"].stringValue
-            RealmService.addOrUpdate(object: user)
+            realm.addOrUpdate(object: user)
         }
     }
     
@@ -179,7 +161,7 @@ private   static func parseUserJSON(json : JSON) {
             drank.alcoholisch = subJson["alcoholisch"].boolValue
             drank.drankId  = subJson["drankId"].intValue
             drank.prijs = subJson["prijs"].doubleValue
-            RealmService.addOrUpdate(object: drank)
+            realm.addOrUpdate(object: drank)
         }
     }
     
@@ -191,11 +173,11 @@ private   static func parseUserJSON(json : JSON) {
             order.timestamp = subJson["timestamp"].doubleValue
             let userId = subJson["orderedBy"]["id"].stringValue
             
-            let orderedBy = RealmService.findUser(userId: userId)
+            let orderedBy = realm.findUser(userId: userId)
             order.orderedBy = orderedBy
             let orderlines = subJson["orderlines"]
             
-            RealmService.addOrUpdate(object: order)
+            realm.addOrUpdate(object: order)
             
             parseOrderlineJSON(json: orderlines, order: order)
         }
@@ -206,15 +188,15 @@ private   static func parseUserJSON(json : JSON) {
             let orderline = Orderline()
             orderline.orderlineId = subJson["orderLineId"].intValue
             let drankId = subJson["drank"]["drankId"].intValue
-            let drank = RealmService.findDrank(drankId: drankId)
+            let drank = realm.findDrank(drankId: drankId)
             orderline.drank = drank
            
             
             orderline.order = order
             let userId = subJson["orderedForId"].stringValue
-            let user = RealmService.findUser(userId: userId)
+            let user = realm.findUser(userId: userId)
             orderline.orderedFor = user
-                       RealmService.addOrUpdate(object: orderline)
+                       realm.addOrUpdate(object: orderline)
         }
     }
 }

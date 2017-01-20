@@ -11,6 +11,7 @@ class UpdateService {
             
             if reachability.isReachable {
              //push orders and remove them
+                print("reachable")
                 APIService.pushOrders()
             }
             
