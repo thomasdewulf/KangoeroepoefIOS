@@ -17,7 +17,11 @@ class DrankOverviewController : UITableViewController {
     let searchController = UISearchController(searchResultsController: nil)
     var indexForPushedAccesory: Int!
     
+    //Outlets
+    @IBOutlet weak var refreshButton : UIBarButtonItem!
+    
     override func viewDidLoad() {
+        
         dranken = realm.realm.objects(Drank.self)
         //Tableview updaten wanneer een wijziging in de lokale db gebeurt
         token = realm.realm.addNotificationBlock {
@@ -27,7 +31,7 @@ class DrankOverviewController : UITableViewController {
         
         splitViewController!.delegate = self
         
-        //Resfresh
+        //Refresh
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
         tableView.refreshControl = refreshControl
@@ -73,6 +77,7 @@ class DrankOverviewController : UITableViewController {
     
     func refreshData() {
         api.getDrankData()
+        refreshControl?.endRefreshing()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

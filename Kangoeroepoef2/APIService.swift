@@ -1,4 +1,4 @@
-//TODO: 
+//TODO:
 //      - parse methodes proberen herwerken naar 1 methode -> EVReflect?
 import Alamofire
 import SwiftyJSON
@@ -8,14 +8,20 @@ class APIService {
     
     //realm
      let realm = RealmService()
+    
      let links : NSDictionary
     
+    let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
     init() {
         let path = Bundle.main.path(forResource: "APILinks", ofType: "plist")!
         links = NSDictionary(contentsOfFile: path)!
+      
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+
     }
     
     func getUserData() {
+        activityIndicator.startAnimating()
         let link = links["users"] as! String
         
         Alamofire.request(link).responseJSON {
@@ -28,6 +34,7 @@ class APIService {
                 print(error.localizedDescription)
                 
             }
+            self.activityIndicator.stopAnimating()
         }
     }
     func getDrankData() {

@@ -16,14 +16,8 @@ class LoginViewController : UIViewController {
       
         errorLabel.text = ""
       
-        //Werkt niet.
-       /* let activityView = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
-        activityView.center = self.view.center
-        activityView.startAnimating()
-        activityView.isHidden = false
-        self.view.addSubview(activityView)*/
-        
-    }
+     
+        }
     
     @IBAction func login() {
         

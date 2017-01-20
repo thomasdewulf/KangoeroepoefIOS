@@ -19,31 +19,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var updateService = UpdateService()
+    let api = APIService()
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
        
         // Override point for customization after application launch.
         
-        //let user = RealmService.realm.objects(ApplicationUser.self).first!
-        //print(user.consumpties)
+        
         UIApplication.shared.setMinimumBackgroundFetchInterval(UIApplicationBackgroundFetchIntervalMinimum)
         updateService.startReachabilityNotifier()
-        APIService.getUserData()
-        APIService.getDrankData()
-        APIService.getOrderData()
+        //First use hier instellen?
+        api.getUserData()
+        api.getDrankData()
+        api.getOrderData()
         return true
     }
     
     func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         
-       // APIService.getDrankData()
-        //deze calls naar background verplaatsen. Is niet essentieel voor werking app
         let reachability = Reachability()!
         if reachability.isReachable {
-            APIService.getDrankData()
-            APIService.getUserData()
-            APIService.getOrderData()
-            APIService.pushOrders()
+            api.getDrankData()
+            api.getUserData()
+            api.getOrderData()
+            api.pushOrders()
         }
       
 
