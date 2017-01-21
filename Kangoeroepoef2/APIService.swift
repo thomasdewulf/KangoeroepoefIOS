@@ -55,8 +55,8 @@ class APIService {
     
      func getOrderData() {
         let realm = try! Realm(fileURL: URL(fileURLWithPath: "Users/thomasdewulf/Desktop/testRealm.realm"))
-        let orderlines = realm.objects(Order.self)
-        var maxId = orderlines.max(ofProperty: "orderId") as Int?
+        let orders = realm.objects(Order.self)
+        var maxId = orders.max(ofProperty: "orderId") as Int?
         if maxId == nil {
             maxId = 0
         }

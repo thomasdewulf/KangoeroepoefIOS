@@ -31,7 +31,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //First use hier instellen?
         api.getUserData()
         api.getDrankData()
-        api.getOrderData()
+        
+        let thread = OperationQueue()
+        thread.addOperation {
+            self.api.getOrderData()
+        }
+        
         return true
     }
     
