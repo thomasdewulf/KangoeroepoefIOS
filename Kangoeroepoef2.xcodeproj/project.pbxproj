@@ -23,6 +23,7 @@
 		33AD5E7A1E2E082300D1CF4A /* OrderlineModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33AD5E791E2E082300D1CF4A /* OrderlineModel.swift */; };
 		33AD5E7C1E2E184F00D1CF4A /* UpdateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33AD5E7B1E2E184F00D1CF4A /* UpdateService.swift */; };
 		33BB1A981E32059D00A32D99 /* APILinks.plist in Resources */ = {isa = PBXBuildFile; fileRef = 33BB1A971E32059D00A32D99 /* APILinks.plist */; };
+		33BB1A9C1E321B6400A32D99 /* EmptyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BB1A9B1E321B6400A32D99 /* EmptyViewController.swift */; };
 		33F9DEFC1E2D05DB00C12E37 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F9DEFB1E2D05DB00C12E37 /* LoginViewController.swift */; };
 		33F9DEFE1E2D131100C12E37 /* DrankOverviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F9DEFD1E2D131100C12E37 /* DrankOverviewController.swift */; };
 		6180199891D126372BF8C01C /* Pods_Kangoeroepoef2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A70EEEF776C7A13BF2F0B892 /* Pods_Kangoeroepoef2.framework */; };
@@ -47,6 +48,7 @@
 		33AD5E791E2E082300D1CF4A /* OrderlineModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderlineModel.swift; sourceTree = "<group>"; };
 		33AD5E7B1E2E184F00D1CF4A /* UpdateService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateService.swift; sourceTree = "<group>"; };
 		33BB1A971E32059D00A32D99 /* APILinks.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = APILinks.plist; sourceTree = "<group>"; };
+		33BB1A9B1E321B6400A32D99 /* EmptyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyViewController.swift; sourceTree = "<group>"; };
 		33F9DEFB1E2D05DB00C12E37 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		33F9DEFD1E2D131100C12E37 /* DrankOverviewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrankOverviewController.swift; sourceTree = "<group>"; };
 		A70EEEF776C7A13BF2F0B892 /* Pods_Kangoeroepoef2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Kangoeroepoef2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -103,6 +105,7 @@
 				33F9DEFD1E2D131100C12E37 /* DrankOverviewController.swift */,
 				33AD5E721E2D1C2F00D1CF4A /* DrankDetailController.swift */,
 				33AD5E741E2D231100D1CF4A /* AddOrderController.swift */,
+				33BB1A9B1E321B6400A32D99 /* EmptyViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -300,6 +303,7 @@
 				33577E841E2CD8EA00D82C5C /* Order.swift in Sources */,
 				33AD5E7A1E2E082300D1CF4A /* OrderlineModel.swift in Sources */,
 				33AD5E771E2E074A00D1CF4A /* AddOrderModel.swift in Sources */,
+				33BB1A9C1E321B6400A32D99 /* EmptyViewController.swift in Sources */,
 				33577E821E2CD70900D82C5C /* ApplicationUser.swift in Sources */,
 				33577E8C1E2CDC1800D82C5C /* RealmService.swift in Sources */,
 			);

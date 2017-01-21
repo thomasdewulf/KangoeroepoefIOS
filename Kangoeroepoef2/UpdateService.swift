@@ -3,7 +3,7 @@ import RealmSwift
 class UpdateService {
 
    private  let reachability = Reachability()!
-    private let api = APIService()
+   
     
     
     func startReachabilityNotifier() {
@@ -12,7 +12,9 @@ class UpdateService {
             if reachability.isReachable {
              //push orders and remove them
                 print("reachable")
-                self.api.pushOrders()
+                let api = APIService()
+                //self.api.realm.realm =  try! Realm(fileURL: URL(fileURLWithPath: "Users/thomasdewulf/Desktop/testRealm.realm"))
+               api.pushOrders()
             }
             
          

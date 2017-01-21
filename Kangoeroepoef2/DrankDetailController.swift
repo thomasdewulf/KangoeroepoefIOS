@@ -25,4 +25,11 @@ class DrankDetailController : UITableViewController {
         aantalCell.detailTextLabel!.text = aantalGedronken.description
         
     }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        if !splitViewController!.isCollapsed {
+            navigationItem.leftBarButtonItem = splitViewController!.displayModeButtonItem
+        }
+    }
 }

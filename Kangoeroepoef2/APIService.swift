@@ -54,7 +54,8 @@ class APIService {
     }
     
      func getOrderData() {
-        let orderlines = realm.realm.objects(Order.self)
+        let realm = try! Realm(fileURL: URL(fileURLWithPath: "Users/thomasdewulf/Desktop/testRealm.realm"))
+        let orderlines = realm.objects(Order.self)
         var maxId = orderlines.max(ofProperty: "orderId") as Int?
         if maxId == nil {
             maxId = 0
@@ -81,8 +82,8 @@ class APIService {
     
      func pushOrders()
     {
-       
-        let orderModels = realm.realm.objects(AddOrderModel.self)
+        let realm = try! Realm(fileURL: URL(fileURLWithPath: "Users/thomasdewulf/Desktop/testRealm.realm"))
+        let orderModels = realm.objects(AddOrderModel.self)
 
         let linkMultiple = links["create"] as! String
       
@@ -91,15 +92,18 @@ class APIService {
             for order in orderModels {
                  order.orderlinesArray = Array(order.orderlines)
                 parameters.append(parseOrderModel(model: order))
-                
+           
           
         }
+        
+        print(parameters)
         
         if orderModels.count >= 1 {
             var test = URLRequest(url: URL(string: linkMultiple)!)
             test.httpMethod = "POST"
             
             let data = try! JSONSerialization.data(withJSONObject: parameters, options: JSONSerialization.WritingOptions.prettyPrinted)
+            
             test.setValue("application/json", forHTTPHeaderField: "Content-Type")
             test.httpBody = data
             
@@ -112,11 +116,11 @@ class APIService {
                 case 200? :
                     print("hoera!")
                     
-                   
-                    try! self.realm.realm.write {
+                   let realm =  try! Realm(fileURL: URL(fileURLWithPath: "Users/thomasdewulf/Desktop/testRealm.realm"))
+                    try! realm.write {
                       
-                        self.realm.realm.delete(self.realm.realm.objects(OrderlineModel.self))
-                        self.realm.realm.delete(self.realm.realm.objects(AddOrderModel.self))
+                        realm.delete(realm.objects(OrderlineModel.self))
+                        realm.delete(realm.objects(AddOrderModel.self))
                     }
                     
                 case 500?:
@@ -153,12 +157,14 @@ class APIService {
      //Deze functies herwerken!!
     //Parse the JSON and update the local db
 private    func parseUserJSON(json : JSON) {
+   //  let realm = try! Realm(fileURL: URL(fileURLWithPath: "Users/thomasdewulf/Desktop/testRealm.realm"))
+   
         for (_,subJson):(String, JSON) in json {
         let user = ApplicationUser()
             user.email = subJson["email"].stringValue
             user.userId = subJson["userId"].stringValue
             user.totem = subJson["totem"].stringValue
-            realm.addOrUpdate(object: user)
+            self.realm.addOrUpdate(object: user)
         }
     }
     
@@ -202,10 +208,15 @@ private    func parseUserJSON(json : JSON) {
            
             
             orderline.order = order
-            let userId = subJson["orderedForId"].stringValue
-            let user = realm.findUser(userId: userId)
-            orderline.orderedFor = user
-                       realm.addOrUpdate(object: orderline)
+            var user : ApplicationUser?
+            if subJson["orderedForId"].stringValue != "" {
+                let userId = subJson["orderedForId"].stringValue
+                user = self.realm.findUser(userId: userId)
+                orderline.orderedFor = user
+                realm.addOrUpdate(object: orderline)
+            }
+            
+        
         }
     }
 }

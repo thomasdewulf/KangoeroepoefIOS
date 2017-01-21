@@ -69,8 +69,9 @@ class DrankOverviewController : UITableViewController {
         realm.addOutgoingOrder(order: orderModel, lines: orderlines)
         if reachability.isReachable {
             
-          api.pushOrders()
+         api.pushOrders()
         }
+        
         controller.resetTable()
        
     }
