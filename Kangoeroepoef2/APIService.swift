@@ -54,7 +54,7 @@ class APIService {
     }
     
     func getOrderData(loader : UIActivityIndicatorView ) {
-        let realm = try! Realm(fileURL: URL(fileURLWithPath: "Users/thomasdewulf/Desktop/testRealm.realm"))
+        let realm = try! Realm()
         let orders = realm.objects(Order.self)
         var maxId = orders.max(ofProperty: "orderId") as Int?
         if maxId == nil {
@@ -83,7 +83,7 @@ class APIService {
     
      func pushOrders()
     {
-        let realm = try! Realm(fileURL: URL(fileURLWithPath: "Users/thomasdewulf/Desktop/testRealm.realm"))
+        let realm = try! Realm()
         let orderModels = realm.objects(AddOrderModel.self)
 
         let linkMultiple = links["create"] as! String
@@ -117,7 +117,7 @@ class APIService {
                 case 200? :
                     print("hoera!")
                     
-                   let realm =  try! Realm(fileURL: URL(fileURLWithPath: "Users/thomasdewulf/Desktop/testRealm.realm"))
+                   let realm =  try! Realm()
                     try! realm.write {
                       
                         realm.delete(realm.objects(OrderlineModel.self))

@@ -4,7 +4,7 @@ class RealmService {
     //Aanpassen bij indienen!
     var  realm: Realm 
     init() {
-         realm = try! Realm(fileURL: URL(fileURLWithPath: "Users/thomasdewulf/Desktop/testRealm.realm"))
+         realm = try! Realm()
     }
     
     
