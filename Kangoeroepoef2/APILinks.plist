@@ -3,12 +3,12 @@
 <plist version="1.0">
 <dict>
 	<key>create</key>
-	<string>http://localhost:5000/api/order/createMultiple</string>
+	<string>http://www.poef.thomasdewulf.be/api/order/createMultiple</string>
 	<key>orders</key>
-	<string>http://localhost:5000/api/Order/NewOrders?id=</string>
+	<string>http://www.poef.thomasdewulf.be/api/Order/NewOrders?id=</string>
 	<key>users</key>
-	<string>http://localhost:5000/api/ApplicationUser</string>
+	<string>http://www.poef.thomasdewulf.be/api/ApplicationUser</string>
 	<key>dranken</key>
-	<string>http://localhost:5000/api/Dranken</string>
+	<string>http://www.poef.thomasdewulf.be/api/Dranken</string>
 </dict>
 </plist>

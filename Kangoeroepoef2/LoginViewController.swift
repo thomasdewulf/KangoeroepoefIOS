@@ -12,10 +12,35 @@ class LoginViewController : UIViewController {
     //vars
     private var loggedinUser: ApplicationUser!
     
+    let api = APIService()
+    
     override func viewDidLoad() {
       
         errorLabel.text = ""
-      
+        api.getUserData()
+        api.getDrankData()
+        let loader = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+        loader.translatesAutoresizingMaskIntoConstraints = false
+           self.view.addSubview(loader)
+        self.view.bringSubview(toFront: loader)
+        self.view.addConstraints(
+        [
+            loader.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            loader.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
+            loader.widthAnchor.constraint(equalTo: self.view.widthAnchor),
+            loader.heightAnchor.constraint(equalTo: self.view.heightAnchor)
+            ])
+     
+        loader.startAnimating()
+       
+        DispatchQueue.global(qos: .background).async {
+            self.api.getOrderData(loader: loader)
+            
+           
+            
+            
+        }
+       
      
         }
     

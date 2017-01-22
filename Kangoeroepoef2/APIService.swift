@@ -21,7 +21,7 @@ class APIService {
     }
     
     func getUserData() {
-        activityIndicator.startAnimating()
+   
         let link = links["users"] as! String
         
         Alamofire.request(link).responseJSON {
@@ -34,7 +34,7 @@ class APIService {
                 print(error.localizedDescription)
                 
             }
-            self.activityIndicator.stopAnimating()
+        
         }
     }
     func getDrankData() {
@@ -53,7 +53,7 @@ class APIService {
         }
     }
     
-     func getOrderData() {
+    func getOrderData(loader : UIActivityIndicatorView ) {
         let realm = try! Realm(fileURL: URL(fileURLWithPath: "Users/thomasdewulf/Desktop/testRealm.realm"))
         let orders = realm.objects(Order.self)
         var maxId = orders.max(ofProperty: "orderId") as Int?
@@ -71,9 +71,10 @@ class APIService {
             case .success(let value):
                 let json = JSON(value)
                 self.parseOrderJSON(json: json)
+                loader.stopAnimating()
             case .failure(let error) :
                 print(error.localizedDescription)
-                
+                loader.stopAnimating()
             }
         }
     }

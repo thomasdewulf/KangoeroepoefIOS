@@ -29,13 +29,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UIApplication.shared.setMinimumBackgroundFetchInterval(UIApplicationBackgroundFetchIntervalMinimum)
         updateService.startReachabilityNotifier()
         //First use hier instellen?
-        api.getUserData()
-        api.getDrankData()
-        
-        let thread = OperationQueue()
-        thread.addOperation {
-            self.api.getOrderData()
-        }
+     
+      
         
         return true
     }
@@ -46,7 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if reachability.isReachable {
             api.getDrankData()
             api.getUserData()
-            api.getOrderData()
+            api.getOrderData(loader: UIActivityIndicatorView())
             api.pushOrders()
         }
       
